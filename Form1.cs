@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 
 namespace Graph
@@ -162,7 +161,7 @@ namespace Graph
             {
                 for (int j = 0; j < data.Count; j++)
                 {
-                    if (graph.Wave(vertexes[i], vertexes[j])&&graph.Wave(vertexes[j],vertexes[i]))
+                    if (graph.Wave(vertexes[i], vertexes[j]))
                     {
                         groupId[i] = j;
                     }
@@ -180,10 +179,6 @@ namespace Graph
             {
                 circles.AddCircle(c[i]);
             }
-
-
-
-
             Draw();
         }
         private static void GetVertex(Graph graph, Vertex vertex)
@@ -200,17 +195,24 @@ namespace Graph
             Graphics g = Graphics.FromImage(bmp);
             Pen pen = new Pen(Color.Black);
             double step = pi / (double)(circles.circlesCount);
-            double rast = 100;
+            double rast = 130;
             double radius = (double)(circles.circlesCount) * Math.Cos(step)+rast;
             // r = 11*cosL;
             for (int i = 0; i < circles.circlesCount/2; i++)
             {
+                //if(i == 0)
+                //{
+                //    g.DrawEllipse(pen, 350 + (float)(c[i].x), 350 + (float)(c[i].y), 20, 20);
+                //    break;
+                //}
                 radius = radius * Math.Cos(step)+rast;
                 c[i].x = radius * Math.Cos(step);
                 c[i].y = radius * Math.Sin(step);
                 // Radius will changes and Angle will changes for each iteration
-                g.DrawEllipse(pen,350+(float)(c[i].x),350+(float)(c[i].y), 20, 20);
+                g.DrawEllipse(pen,350+(float)(c[i].x),350+(float)(c[i].y), 10, 10);
                 step += pi / circles.circlesCount;
+                c[i].x = 350 + c[i].x;
+                c[i].y = 350 + c[i].y;
             }
             step = pi / (double)(circles.circlesCount);
             for (int i = circles.circlesCount / 2; i < circles.circlesCount; i++)
@@ -219,9 +221,16 @@ namespace Graph
                 c[i].x = radius * Math.Cos(step);
                 c[i].y = radius * Math.Sin(step);
                 // Radius will changes and Angle will changes for each iteration
-                g.DrawEllipse(pen, 350 - (float)(c[i].x), 350 - (float)(c[i].y), 20, 20);
+                g.DrawEllipse(pen, 350 - (float)(c[i].x), 350 - (float)(c[i].y), 10, 10);
                 step += pi / circles.circlesCount;
+                c[i].x = 350 - c[i].x;
+                c[i].y = 350 - c[i].y;
             }
+            // need to draw Edges from c to c i think=)
+
+
+
+            
             picture.Image = bmp;
         }
 
