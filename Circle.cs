@@ -8,11 +8,11 @@ namespace Graph
 {
     class Circle
     {
-        public float x { get; set; }
-        public float y { get; set; }
-        public int radius { get; set; }
+        public double x { get; set; }
+        public double y { get; set; }
+        public double radius { get; set; }
         public Vertex vertex { get; set; }
-        public Circle(float x, float y, int radius, Vertex vertex)
+        public Circle(double x, double y, double radius, Vertex vertex)
         {
             this.x = x;
             this.y = y;
