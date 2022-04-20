@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Text.RegularExpressions;
 
 
 namespace Graph
@@ -31,7 +31,6 @@ namespace Graph
         string FileName;
         Graph graph = new Graph();
         int countOfVertex;
-        int countOfEdge;
         Graphics g;
         IEnumerable<string> distinctNames; // продолжить с данного момента
         List<Circle> c = new List<Circle>();                                   // 
@@ -72,10 +71,9 @@ namespace Graph
             //                                                                                   "Rashadov Matveev\nRashadov Rakitskiy\nRashadov Ivleev\n" +
             //                                                                                   "Rakitskiy Rashadov\nRakitskiy Matveev\nRakitskiy Ivleev\n" +
             //                                                                                   "Ivleev Rakitskiy\nIvleev Rashadov\nIvleev Matveev\n");
-            char[] charSeparators = new char[] { ' ', '\n' };
+            char[] charSeparators = new char[] { ' ', '\r','\n' };
             var dataString = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(),FileName)).Split(charSeparators,StringSplitOptions.RemoveEmptyEntries);
             countOfVertex = Int32.Parse(dataString[0]);
-            countOfEdge = dataString.Length / 2;
             var b = new string[dataString.Length - 1];
             Array.Copy(dataString, 0, b, 0, 0);
             Array.Copy(dataString, 0 + 1, b, 0, dataString.Length - 0 - 1);
@@ -136,10 +134,10 @@ namespace Graph
 
 
 
-            for (int i = 0; i < data.Count; ++i)
-            {
-                ;
-            }
+            //for (int i = 0; i < data.Count; ++i)
+            //{
+            //    ;
+            //}
 
             var matrix = graph.GetMatrix();
             dataGridView1.RowCount = graph.VertexCount;
@@ -158,14 +156,13 @@ namespace Graph
             //GetVertex(graph, vertexes[1]);
 
 
-
             var groupId = new int[data.Count];
             
             for(int i =0;i < data.Count; i++)
             {
                 for (int j = 0; j < data.Count; j++)
                 {
-                    if (graph.Wave(vertexes[i], vertexes[j]))
+                    if (graph.Wave(vertexes[i], vertexes[j])&&graph.Wave(vertexes[j],vertexes[i]))
                     {
                         groupId[i] = j;
                     }
