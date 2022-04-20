@@ -176,7 +176,7 @@ namespace Graph
 
             for (int i = 0; i < vertexes.Count; i++)
             {
-                c.Add(new Circle(100, 350, 20, vertexes[i]));
+                c.Add(new Circle(0, 0, 20, vertexes[i]));
             }
 
             for (int i = 0; i < vertexes.Count; i++)
