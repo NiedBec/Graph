@@ -203,50 +203,29 @@ namespace Graph
             Graphics g = Graphics.FromImage(bmp);
             Pen pen = new Pen(Color.Black);
             double step = pi / (double)(circles.circlesCount);
-            double radius = (double)(circles.circlesCount) * Math.Cos(step);
-            double rast = 50;
+            double rast = 100;
+            double radius = (double)(circles.circlesCount) * Math.Cos(step)+rast;
             // r = 11*cosL;
-            for (int i = 0; i < circles.circlesCount; i++)
+            for (int i = 0; i < circles.circlesCount/2; i++)
             {
-                if(i == 0)
-                {
-                    step = pi / (double)(circles.circlesCount);
-                    radius = radius * Math.Cos(step);
-                    c[i].x = radius * Math.Cos(step);
-                    c[i].y = radius * Math.Sin(step);
-                    // Radius will changes and Angle will changes for each iteration
-                    g.DrawEllipse(pen,(float)(c[i].x),(float)(c[i].y + rast), 20, 20);
-                }
-                else
-                {
-                    if (i % 2 == 0)
-                    {
-                        step += step;
-                        radius = radius * Math.Cos(step);
-                        c[i].x = radius * Math.Cos(step);
-                        c[i].y = radius * Math.Sin(step);
-                        // Radius will changes and Angle will changes for each iteration
-                        g.DrawEllipse(pen, (float)(c[i].x), (float)(c[i].y + (rast*i)), 20, 20);
-                    }
-                    else
-                    {
-                        step += step;
-                        radius = radius * Math.Cos(step);
-                        c[i].x = radius * Math.Cos(step);
-                        c[i].y = radius * Math.Sin(step);
-                        // Radius will changes and Angle will changes for each iteration
-                        g.DrawEllipse(pen, (float)(c[i].x + (rast*i)), (float)(c[i].y), 20, 20);
-                    }
-                }
-
-                //(double)(circles.circlesCount - i)
-
-
+                radius = radius * Math.Cos(step)+rast;
+                c[i].x = radius * Math.Cos(step);
+                c[i].y = radius * Math.Sin(step);
+                // Radius will changes and Angle will changes for each iteration
+                g.DrawEllipse(pen,350+(float)(c[i].x),350+(float)(c[i].y), 20, 20);
+                step += pi / circles.circlesCount;
             }
-
-            
+            step = pi / (double)(circles.circlesCount);
+            for (int i = circles.circlesCount / 2; i < circles.circlesCount; i++)
+            {
+                radius = radius * Math.Cos(step) + rast;
+                c[i].x = radius * Math.Cos(step);
+                c[i].y = radius * Math.Sin(step);
+                // Radius will changes and Angle will changes for each iteration
+                g.DrawEllipse(pen, 350 - (float)(c[i].x), 350 - (float)(c[i].y), 20, 20);
+                step += pi / circles.circlesCount;
+            }
             picture.Image = bmp;
-            
         }
 
 
