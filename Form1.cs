@@ -27,12 +27,14 @@ namespace Graph
         {
 
         }
+        Circles circles = new Circles();
         string FileName;
         Graph graph = new Graph();
         int countOfVertex;
         int countOfEdge;
         Graphics g;
-        IEnumerable<string> distinctNames; // продолжить с данного момента 
+        IEnumerable<string> distinctNames; // продолжить с данного момента
+        List<Circle> c = new List<Circle>();                                   // 
         
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -171,6 +173,20 @@ namespace Graph
             }
             textBox1.Text = groupId.Distinct().Count().ToString();
 
+
+            for (int i = 0; i < vertexes.Count; i++)
+            {
+                c.Add(new Circle(350, 350, 20, vertexes[i]));
+            }
+
+            for (int i = 0; i < vertexes.Count; i++)
+            {
+                circles.AddCircle(c[i]);
+            }
+
+
+
+
             Draw();
         }
         private static void GetVertex(Graph graph, Vertex vertex)
@@ -186,45 +202,50 @@ namespace Graph
             Bitmap bmp = new Bitmap(picture.Width, picture.Height);
             Graphics g = Graphics.FromImage(bmp);
             Pen pen = new Pen(Color.Black);
-            g.DrawEllipse(pen, 350, 350, 50, 50);
+            double step = (float)360 / (float)circles.circlesCount;
+            for(int i = 0; i < circles.circlesCount; i++)
+            {
+                //for (float angle = 0; angle <= 360; angle+=)
+                //{
+                //    g.DrawEllipse(pen, c[i].x+j, 10, c[i].radius, c[i].radius);
+                //}
+
+                    g.DrawEllipse(pen, c[i].x+(float)(250 * Math.Cos(step)), c[i].y+(float)(250 * Math.Sin(step)), 20, 20);
+                    step += step;
+                
+            }
+
+            
             picture.Image = bmp;
             
         }
 
 
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
-        {
+        //private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
+        //private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
+        //private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+        //private void label1_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
+        //private void pictureBox1_Click_1(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

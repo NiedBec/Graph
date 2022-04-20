@@ -60,8 +60,8 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            //this.openFileDialog1.FileName = "openFileDialog1";
+            //this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // label1
             // 
@@ -71,18 +71,17 @@
             this.label1.Size = new System.Drawing.Size(91, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Choose input File:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            //this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // picture
             // 
             this.picture.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.picture.Dock = System.Windows.Forms.DockStyle.Right;
-            this.picture.Location = new System.Drawing.Point(207, 0);
+            this.picture.Location = new System.Drawing.Point(195, 12);
             this.picture.Name = "picture";
-            this.picture.Size = new System.Drawing.Size(700, 726);
+            this.picture.Size = new System.Drawing.Size(700, 700);
             this.picture.TabIndex = 5;
             this.picture.TabStop = false;
-            this.picture.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            //this.picture.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // textBox1
             // 
@@ -99,7 +98,7 @@
             this.label2.Size = new System.Drawing.Size(133, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Кол-во группировок ОПГ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            //this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Form1
             // 

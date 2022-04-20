@@ -11,12 +11,13 @@ namespace Graph
         public float x { get; set; }
         public float y { get; set; }
         public int radius { get; set; }
-        public Circle(float x,float y,int radius)
+        public Vertex vertex { get; set; }
+        public Circle(float x, float y, int radius, Vertex vertex)
         {
-            this.x = x; this.y = y; this.radius = radius;
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.vertex = vertex;
         }
     }
-   
-
-
 }
