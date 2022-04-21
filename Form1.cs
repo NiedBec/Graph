@@ -209,7 +209,7 @@ namespace Graph
                 c[i].x = (float)(radius * Math.Cos(step));
                 c[i].y = (float)(radius * Math.Sin(step));
                 // Radius will changes and Angle will changes for each iteration
-                g.DrawEllipse(pen,350+(float)(c[i].x),350+(float)(c[i].y), 10, 10);
+                g.DrawEllipse(pen,350+(float)(c[i].x),350+(float)(c[i].y), 20, 20);
                 step += pi / circles.circlesCount;
                 c[i].x = 350 + c[i].x;
                 c[i].y = 350 + c[i].y;
@@ -221,7 +221,7 @@ namespace Graph
                 c[i].x = (float)(radius * Math.Cos(step));
                 c[i].y = (float)(radius * Math.Sin(step));
                 // Radius will changes and Angle will changes for each iteration
-                g.DrawEllipse(pen, 350 - (float)(c[i].x), 350 - (float)(c[i].y), 10, 10);
+                g.DrawEllipse(pen, 350 - (float)(c[i].x), 350 - (float)(c[i].y), 20, 20);
                 step += pi / circles.circlesCount;
                 c[i].x = 350 - c[i].x;
                 c[i].y = 350 - c[i].y;
@@ -271,7 +271,7 @@ namespace Graph
             }
             for (int i = 0; i < bID.Length; i+=2)
             {
-                g.DrawLine(pen, c[bID[i]].x, c[bID[i]].y, c[bID[i+1]].x, c[bID[i + 1]].y);
+                g.DrawLine(pen, c[bID[i]].x+10, c[bID[i]].y+10, c[bID[i+1]].x+10, c[bID[i + 1]].y+10);
                
             }
 
