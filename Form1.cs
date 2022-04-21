@@ -206,8 +206,8 @@ namespace Graph
                 //    break;
                 //}
                 radius = radius * Math.Cos(step)+rast;
-                c[i].x = radius * Math.Cos(step);
-                c[i].y = radius * Math.Sin(step);
+                c[i].x = (float)(radius * Math.Cos(step));
+                c[i].y = (float)(radius * Math.Sin(step));
                 // Radius will changes and Angle will changes for each iteration
                 g.DrawEllipse(pen,350+(float)(c[i].x),350+(float)(c[i].y), 10, 10);
                 step += pi / circles.circlesCount;
@@ -218,8 +218,8 @@ namespace Graph
             for (int i = circles.circlesCount / 2; i < circles.circlesCount; i++)
             {
                 radius = radius * Math.Cos(step) + rast;
-                c[i].x = radius * Math.Cos(step);
-                c[i].y = radius * Math.Sin(step);
+                c[i].x = (float)(radius * Math.Cos(step));
+                c[i].y = (float)(radius * Math.Sin(step));
                 // Radius will changes and Angle will changes for each iteration
                 g.DrawEllipse(pen, 350 - (float)(c[i].x), 350 - (float)(c[i].y), 10, 10);
                 step += pi / circles.circlesCount;
@@ -227,8 +227,53 @@ namespace Graph
                 c[i].y = 350 - c[i].y;
             }
             // need to draw Edges from c to c i think=)
+            char[] charSeparators = new char[] { ' ', '\r', '\n' };
+            var dataString = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), FileName)).Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
+            countOfVertex = Int32.Parse(dataString[0]);
+            var b = new string[dataString.Length - 1];
+            Array.Copy(dataString, 0, b, 0, 0);
+            Array.Copy(dataString, 0 + 1, b, 0, dataString.Length - 0 - 1);
+            distinctNames = b.Distinct();
+            foreach (string Name in distinctNames)
+            {
+                Console.WriteLine(Name);
+            }
+
+            var data = distinctNames.ToList();
+
+            //Выглядит это следующим образом. Пусть a — исходный массив, b — результирующий массив, n — номер удаляемого элемента.
+            //var b = new int[a.Length - 1]; Предположим, что массивы целочисленные
+            //Array.Copy(a, 0, b, 0, n);
+            //Array.Copy(a, n + 1, b, n, a.Length - n - 1);
+            // https://ru.stackoverflow.com/questions/414655/%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0-%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D0%BA%D0%BE%D0%B4%D0%B0-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0-%D0%B8%D0%B7-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D0%B0-%D0%BF%D0%BE-%D0%BD%D0%BE%D0%BC%D0%B5%D1%80%D1%83-%D0%9D%D0%BE%D0%BC%D0%B5%D1%80
 
 
+            List<Vertex> vertexes = new List<Vertex>();
+            List<Edge> edges = new List<Edge>();
+
+            var bID = new int[dataString.Length - 1];
+
+            var dataID = new int[data.Count];
+            for (int i = 0; i < data.Count; ++i)
+            {
+                dataID[i] = i;
+            }
+
+            for (int i = 0; i < b.Length; ++i)
+            {
+                for (int j = 0; j < data.Count; ++j)
+                {
+                    if (b[i] == data[j])
+                    {
+                        bID[i] = dataID[j];
+                    }
+                }
+            }
+            for (int i = 0; i < bID.Length; i+=2)
+            {
+                g.DrawLine(pen, c[bID[i]].x, c[bID[i]].y, c[bID[i+1]].x, c[bID[i + 1]].y);
+               
+            }
 
             
             picture.Image = bmp;
