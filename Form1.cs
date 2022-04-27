@@ -281,7 +281,7 @@ namespace Graph
                     }
                 }
             }
-            if (edges.Count>1)
+            if (edges.Count>=1)
             {
                 for (int i = 0; i < bID.Length; i += 2)
                 {
