@@ -34,6 +34,8 @@ namespace Graph
         IEnumerable<string> distinctNames; // продолжить с данного момента
         List<Circle> c = new List<Circle>();                                   // 
         double pi = 3.14159265;
+        List<Vertex> vertexes = new List<Vertex>();
+        List<Edge> edges = new List<Edge>();
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -91,8 +93,7 @@ namespace Graph
             // https://ru.stackoverflow.com/questions/414655/%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0-%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D0%BA%D0%BE%D0%B4%D0%B0-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0-%D0%B8%D0%B7-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D0%B0-%D0%BF%D0%BE-%D0%BD%D0%BE%D0%BC%D0%B5%D1%80%D1%83-%D0%9D%D0%BE%D0%BC%D0%B5%D1%80
             
 
-            List<Vertex> vertexes = new List<Vertex>();
-            List<Edge> edges = new List<Edge>();
+
 
             var bID = new int[dataString.Length-1];
 
@@ -138,18 +139,18 @@ namespace Graph
             //    ;
             //}
 
-            var matrix = graph.GetMatrix();
-            dataGridView1.RowCount = graph.VertexCount;
-            dataGridView1.ColumnCount = graph.VertexCount;
+            //var matrix = graph.GetMatrix();
+            //dataGridView1.RowCount = graph.VertexCount;
+            //dataGridView1.ColumnCount = graph.VertexCount;
 
-            for(int i = 0; i < graph.VertexCount; i++)
-            {
-                dataGridView1.Columns[i].HeaderText = data[i];
-                for (int j = 0; j < graph.VertexCount; j++)
-                {
-                    dataGridView1.Rows[i].Cells[j].Value = matrix[i, j];
-                }
-            }
+            //for(int i = 0; i < graph.VertexCount; i++)
+            //{
+            //    dataGridView1.Columns[i].HeaderText = data[i];
+            //    for (int j = 0; j < graph.VertexCount; j++)
+            //    {
+            //        dataGridView1.Rows[i].Cells[j].Value = matrix[i, j];
+            //    }
+            //}
 
 
             //GetVertex(graph, vertexes[1]);
@@ -178,6 +179,17 @@ namespace Graph
             for (int i = 0; i < vertexes.Count; i++)
             {
                 circles.AddCircle(c[i]);
+            }
+            if(dataString.Length == 1)
+            {
+                for (int i = 0; i < countOfVertex; i++)
+                {
+                    c.Add(new Circle(0, 0, 20));
+                }
+                for (int i = 0; i < countOfVertex; i++)
+                {
+                    circles.AddCircle(c[i]);
+                }
             }
             Draw();
         }
@@ -248,8 +260,8 @@ namespace Graph
             // https://ru.stackoverflow.com/questions/414655/%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0-%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D0%BA%D0%BE%D0%B4%D0%B0-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F-%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0-%D0%B8%D0%B7-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D0%B0-%D0%BF%D0%BE-%D0%BD%D0%BE%D0%BC%D0%B5%D1%80%D1%83-%D0%9D%D0%BE%D0%BC%D0%B5%D1%80
 
 
-            List<Vertex> vertexes = new List<Vertex>();
-            List<Edge> edges = new List<Edge>();
+            //List<Vertex> vertexes = new List<Vertex>();
+            //List<Edge> edges = new List<Edge>();
 
             var bID = new int[dataString.Length - 1];
 
@@ -269,12 +281,14 @@ namespace Graph
                     }
                 }
             }
-            for (int i = 0; i < bID.Length; i+=2)
+            if (edges.Count>1)
             {
-                g.DrawLine(pen, c[bID[i]].x+10, c[bID[i]].y+10, c[bID[i+1]].x+10, c[bID[i + 1]].y+10);
-               
-            }
+                for (int i = 0; i < bID.Length; i += 2)
+                {
+                    g.DrawLine(pen, c[bID[i]].x + 10, c[bID[i]].y + 10, c[bID[i + 1]].x + 10, c[bID[i + 1]].y + 10);
 
+                }
+            }
             
             picture.Image = bmp;
         }

@@ -19,5 +19,11 @@ namespace Graph
             this.radius = radius;
             this.vertex = vertex;
         }
+        public Circle(float x,float y,float radius)
+        {
+            this.x = x;
+            this.y = y;
+            this.radius=radius;
+        }
     }
 }
