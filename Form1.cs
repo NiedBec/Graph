@@ -180,16 +180,14 @@ namespace Graph
             {
                 circles.AddCircle(c[i]);
             }
-            if(dataString.Length == 1)
+
+            for (int i = 0; i < countOfVertex; i++)
             {
-                for (int i = 0; i < countOfVertex; i++)
-                {
-                    c.Add(new Circle(0, 0, 20));
-                }
-                for (int i = 0; i < countOfVertex; i++)
-                {
-                    circles.AddCircle(c[i]);
-                }
+                c.Add(new Circle(0, 0, 20));
+            }
+            for (int i = 0; i < countOfVertex; i++)
+            {
+                circles.AddCircle(c[i]);
             }
             Draw();
         }
@@ -210,31 +208,26 @@ namespace Graph
             double rast = 130;
             double radius = (double)(circles.circlesCount) * Math.Cos(step)+rast;
             // r = 11*cosL;
-            for (int i = 0; i < circles.circlesCount/2; i++)
+            for (int i = 0; i < countOfVertex/2; i++)
             {
-                //if(i == 0)
-                //{
-                //    g.DrawEllipse(pen, 350 + (float)(c[i].x), 350 + (float)(c[i].y), 20, 20);
-                //    break;
-                //}
                 radius = radius * Math.Cos(step)+rast;
                 c[i].x = (float)(radius * Math.Cos(step));
                 c[i].y = (float)(radius * Math.Sin(step));
                 // Radius will changes and Angle will changes for each iteration
                 g.DrawEllipse(pen,350+(float)(c[i].x),350+(float)(c[i].y), 20, 20);
-                step += pi / circles.circlesCount;
+                step += pi / countOfVertex;
                 c[i].x = 350 + c[i].x;
                 c[i].y = 350 + c[i].y;
             }
             step = pi / (double)(circles.circlesCount);
-            for (int i = circles.circlesCount / 2; i < circles.circlesCount; i++)
+            for (int i = countOfVertex / 2; i < countOfVertex; i++)
             {
                 radius = radius * Math.Cos(step) + rast;
                 c[i].x = (float)(radius * Math.Cos(step));
                 c[i].y = (float)(radius * Math.Sin(step));
                 // Radius will changes and Angle will changes for each iteration
                 g.DrawEllipse(pen, 350 - (float)(c[i].x), 350 - (float)(c[i].y), 20, 20);
-                step += pi / circles.circlesCount;
+                step += pi / countOfVertex;
                 c[i].x = 350 - c[i].x;
                 c[i].y = 350 - c[i].y;
             }
