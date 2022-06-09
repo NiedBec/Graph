@@ -205,7 +205,7 @@ namespace Graph
             Graphics g = Graphics.FromImage(bmp);
             Pen pen = new Pen(Color.Black);
             double step = pi / (double)(circles.circlesCount);
-            double rast = 130;
+            double rast = 100;
             double radius = (double)(circles.circlesCount) * Math.Cos(step)+rast;
             // r = 11*cosL;
             for (int i = 0; i < countOfVertex/2; i++)
